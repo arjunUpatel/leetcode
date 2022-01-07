@@ -9,7 +9,7 @@ public class GenerateParentheses {
 		return res;
 	}
 
-	public static void backtrack(List<String> list, String str, int leftCount, int rightCount, int n) {
+	public void backtrack(List<String> list, String str, int leftCount, int rightCount, int n) {
 		if (str.length() == 2 * n) {
 			list.add(str);
 			return;
