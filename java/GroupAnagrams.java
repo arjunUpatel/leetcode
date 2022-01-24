@@ -18,7 +18,7 @@ public class GroupAnagrams {
 			map.get(str).add(strs[i]);
 
 		}
-		for (List val : map.values())
+		for (List<String> val : map.values())
 			res.add(val);
 		return res;
 	}
