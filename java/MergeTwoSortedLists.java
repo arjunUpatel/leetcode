@@ -1,66 +1,36 @@
-public class MergeTwoSortedLists {
+class MergeTwoSortedLists {
 
 	public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-		ListNode res;
-		if (list1 != null) {
-			try {
-				if (list1.val < list2.val) {
-					res = list1;
-					list1 = list1.next;
-				} else {
-					res = list2;
-					list2 = list2.next;
-				}
-			} catch (Exception e) {
-				res = list1;
-				list1 = list1.next;
+		if (list1 == null)
+			return list2;
+		if (list2 == null)
+			return list1;
+		ListNode ptr1 = list1, ptr2 = list2, res = null, temp = null, node = null;
+		while (ptr1 != null && ptr2 != null) {
+			if (ptr1.val < ptr2.val) {
+				temp = ptr1;
+				ptr1 = ptr1.next;
+			} else {
+				temp = ptr2;
+				ptr2 = ptr2.next;
 			}
-		} else if (list2 != null) {
-			res = list2;
-			list2 = list2.next;
-		} else
-			return null;
-		ListNode head = res;
-
-		while (list1 != null && list2 != null) {
-			if (list1.val < list2.val) {
-				res.next = new ListNode(list1.val, null);
-				res = res.next;
-				list1 = list1.next;
-			}
-			else {
-				res.next = new ListNode(list2.val, null);
-				res = res.next;
-				list2 = list2.next;
+			if (node == null) {
+				node = temp;
+				res = node;
+			} else {
+				node.next = temp;
+				node = temp;
 			}
 		}
-		while (list1 != null) {
-			res.next = new ListNode(list1.val, null);
-			list1 = list1.next;
-			res = res.next;
-		}
-		while (list2 != null) {
-			res.next = new ListNode(list2.val, null);
-			list2 = list2.next;
-			res = res.next;
-		}
-		return head;
+		if (ptr1 == null)
+			node.next = ptr2;
+		else
+			node.next = ptr1;
+		return res;
 	}
 
-	public class ListNode {
+	class ListNode {
 		int val;
 		ListNode next;
-
-		ListNode() {
-		}
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
 	}
 }
