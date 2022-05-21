@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class ImplementQueueUsingStacks {
+public class MyQueue {
     Stack<Integer> s1;
     Stack<Integer> s2;
     int front;
